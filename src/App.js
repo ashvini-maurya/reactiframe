@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import IFrame from "./iframe";
 
-function App() {
+const App = () => {
+  const [textarea, setTextarea] = useState("");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <div className="textarea">
+        <form>
+          <textarea
+            name="textarea"
+            cols="30"
+            rows="3"
+            placeholder="textarea"
+            value={textarea}
+            onChange={(e) => setTextarea(e.target.value)}
+          />
+          <textarea
+            name="textarea2"
+            cols="30"
+            rows="3"
+            placeholder="New textarea"
+          />
+        </form>
+      </div>
+
+      <IFrame>
+        <h1>{textarea}</h1>
+      </IFrame>
     </div>
   );
-}
+};
 
 export default App;
