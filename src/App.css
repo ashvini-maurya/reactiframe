@@ -26,3 +26,11 @@ form > textarea {
   margin: 10px 0;
   padding: 5px;
 }
+
+.render {
+  display: flex;
+  justify-content: center;
+  height: 30px;
+  flex-direction: column;
+  align-self: flex-end;
+}

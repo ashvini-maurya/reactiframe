@@ -32,7 +32,7 @@ const App = () => {
           value={jsonContext}
           onChange={(e) => setJsonContext(e.target.value)}
         />
-        <button onClick={renderTemplate}>Render</button>
+        <button onClick={renderTemplate} className="render">Render</button>
       </div>
 
       <IFrame>{templateString}</IFrame>
