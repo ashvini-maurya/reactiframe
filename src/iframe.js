@@ -1,15 +1,25 @@
-import React, { useState } from "react";
-import { createPortal } from "react-dom";
+import React, { Component } from "react";
 
-const IFrame = ({ children, ...props }) => {
-  const [contentRef, setContentRef] = useState(null);
-  const mountNode = contentRef?.contentWindow?.document?.body;
+class IFrame extends Component {
+  componentDidMount() {
+    this.node.addEventListener("load", this.handleLoad);
+  }
 
-  return (
-    <iframe {...props} ref={setContentRef}>
-      {mountNode && createPortal(children, mountNode)}
-    </iframe>
-  );
-};
+  componentWillUnmount() {
+    this.node.removeEventListener("load", this.handleLoad);
+  }
+
+  handleLoad = () => {
+    this.iframeRoot = this.node.contentDocument.body;
+    this.forceUpdate();
+  };
+
+  render() {
+    const { children } = this.props;
+    return (
+      <iframe srcDoc={children} ref={(node) => (this.node = node)}></iframe>
+    );
+  }
+}
 
 export default IFrame;
